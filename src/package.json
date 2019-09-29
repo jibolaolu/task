@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "sprintf": "^0.1.0",
+    "q": "^1.4.1",
+    "csv-parse": "^1.0.1"
+  }
+}
