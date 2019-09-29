@@ -1,0 +1,3 @@
+To start run `sh task.sh create`
+To stop run `sh task.sh destroy`
+
