@@ -1,3 +1,26 @@
-To start run `sh task.sh create`
-To stop run `sh task.sh destroy`
+To start run ```sh task.sh create```
+To stop run ```sh task.sh destroy```
 
+
+  The strategy is to read data into memory at the start. Ideally  in-memory key-value store like memcached or Redis will be more appropriate
+  In order to avoid bursting active cache in order to update, data is copied to secondary cache, then the secondary cache becomes active
+
+
+  To DO
+  ======
+  Refactoring. Code cleanup etc
+  Implement Infrastructure components to track memory and cpu utilization
+  Reactive to hihg/low usage of resource
+  study memory footprint to see if the approach used won't leak to memory leak
+  Logic to ensure dynamic parameters in a url are treated specially, so that different variants even if not exactly
+  matching in DB are analyzed.
+
+  To Test
+  =======
+  if url does not begin with '/urlinfo/1/', a 404 is returned with invalid message  (json)
+  url is validated before processing
+  response for a non-safe url looks like this:  {"link": {"status":"not_safe","security_info":"none", "datestamp":"2019-09-29T21:35:29.120Z"}}
+  response for safe url looks like this: {"link": {"status":"ok","security_info":"none", "datestamp":"2019-09-29T22:07:21.260Z"}}
+
+  curl http://localhost:3000/urlinfo/1/loremipsum.com:80/ijk?lmn/opq
+  curl http://localhost:3000/urlinfo/1/loremipsum.com:80/opq123
